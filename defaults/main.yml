@@ -1,0 +1,5 @@
+---
+# Just a simple list of package names that should NOT exist on the host.
+unwanted_packages_list:
+#  - cmatrix
+#  - sl
