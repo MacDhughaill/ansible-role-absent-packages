@@ -1,0 +1,15 @@
+---
+- block:
+  - name: Remove unwanted packages from CentOS and RHEL
+    yum:
+      name: "{{ bulk_packages_absent }}"
+      state: absent
+    when: bulk_packages_absent is defined
+
+  - name: Install packages on CentOS and RHEL
+    yum:
+      name: "{{ bulk_packages_present }}"
+      state: present
+      update_cache: true
+    when: bulk_packages_present is defined
+  become: true
