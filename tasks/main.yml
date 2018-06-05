@@ -1,6 +1,6 @@
 ---
 - import_tasks: bulk_CentOS_packages.yml
-  when: ansible_os_family == "CentOS"
+  when: ansible_distribution == "CentOS"
 
 - import_tasks: bulk_Fedora_packages.yml
   when: ansible_distribution == "Fedora"
