@@ -1,5 +1,19 @@
 ---
 - block:
+  - name: Add GPG key to RPM database
+    rpm_key:
+      key: "{{ item.rpm_key }}"
+      state: present
+    with_items: "{{ bulk_packages_new_repos }}"
+    when: bulk_packages_new_repos is defined
+
+  - name: Install new repository from RPM
+    dnf:
+      name: "{{ item.location }}"
+      state: present
+    with_items: "{{ bulk_packages_new_repos }}"
+    when: bulk_packages_new_repos is defined
+
   - name: Remove unwanted packages from Fedora
     dnf:
       name: "{{ bulk_packages_absent }}"

@@ -1,3 +1,6 @@
 ---
 # bulk_packages_absent:
+#bulk_packages_new_repos:
+#  - rpm_key:
+#  - location:
 # bulk_packages_present:
