@@ -1,13 +1,13 @@
 ---
 - block:
-  - name: Add GPG key to RPM database
+  - name: Add GPG key to RPM database on Fedora
     rpm_key:
       key: "{{ item.rpm_key }}"
       state: present
     with_items: "{{ bulk_packages_new_repos }}"
     when: bulk_packages_new_repos is defined
 
-  - name: Install new repository from RPM
+  - name: Install new repository from RPM on Fedora
     dnf:
       name: "{{ item.location }}"
       state: present
