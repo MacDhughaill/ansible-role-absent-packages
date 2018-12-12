@@ -1,5 +1,19 @@
 ---
 - block:
+  - name: Install necessary packages on CentOS for COPR repositories
+    yum:
+      name: "{{ bulk_packages_centos_copr_need }}"
+      state: present
+      update_cache: true
+    when: bulk_packages_centos_copr_repos is defined
+
+  - name: Download COPR repositories on CentOS
+    get_url:
+      url: "{{ item }}"
+      dest: "/etc/yum.repos.d/_copr_{{ item | basename | regex_replace('(.*)-epel-7(\\.repo)', '\\1\\2') }}"
+    with_items: "{{ bulk_packages_centos_copr_repos }}"
+    when: bulk_packages_centos_copr_repos is defined
+
   - name: Remove unwanted packages from CentOS
     yum:
       name: "{{ bulk_packages_absent }}"

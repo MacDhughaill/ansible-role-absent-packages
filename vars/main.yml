@@ -1,0 +1,5 @@
+---
+bulk_packages_centos_copr_need:
+  - libselinux-python
+  - yum-plugin-copr
+# get_url tasks fail without libselinux-python package.
